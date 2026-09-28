@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- スマホでも正しい大きさで表示するための設定 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ブラウザのタブや Google 検索に表示されるタイトルと説明文 -->
+  <title>gelateria +×（ジェラテリア タストカケル）｜鳥取駅近くのジェラートとワインのお店</title>
+  <meta name="description" content="鳥取駅から徒歩5分。元ソムリエの店主がつくる、季節の素材のジェラートとワインのお店。パフェやタルト、テイクアウトも。">
+  <!-- 試作のあいだは Google 検索に出さない（本番公開のときにこの行を消す） -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- 文字の書体（Google Fonts から読み込む） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- 見た目のファイル（style.css）を読み込む -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== ヘッダー（画面の上に固定されるバー） ===== -->
+  <header class="header">
+    <a href="#top" class="header-logo">gelateria <b>+×</b></a>
+    <nav class="nav">
+      <a href="#concept">コンセプト</a>
+      <a href="#flavors">フレーバー</a>
+      <a href="#takeout">テイクアウト</a>
+      <a href="#info">店舗情報</a>
+    </nav>
+    <a class="header-ig" href="https://www.instagram.com/gelateriatasutokakeru/" target="_blank" rel="noopener">Instagram</a>
+  </header>
+
+  <main>
+
+    <!-- ===== 1. トップ（最初に目に入る画面） ===== -->
+    <section class="hero" id="top">
+      <!-- 後ろで切り替わる写真。1枚だけにすると止まって表示される
+           パソコン用：hero-1.jpg（横 1920×1080）
+           スマホ用　：hero-1-sp.jpg（縦 1080×1920）※なければパソコン用が使われる -->
+      <div class="hero-slides" id="hero-slides">
+        <picture>
+          <source media="(orientation: portrait)" srcset="images/hero-1-sp.jpg">
+          <img class="is-active" src="images/hero-1.jpg" alt="店内のカウンター">
+        </picture>
+        <picture>
+          <source media="(orientation: portrait)" srcset="images/hero-2-sp.jpg">
+          <img src="images/hero-2.jpg" alt="ショーケースに並ぶジェラート">
+        </picture>
+        <picture>
+          <source media="(orientation: portrait)" srcset="images/hero-3-sp.jpg">
+          <img src="images/hero-3.jpg" alt="パフェとワイン">
+        </picture>
+      </div>
+      <div class="hero-text">
+        <h1 class="logo">
+          <span class="logo-word">gelateria</span>
+          <span class="logo-mark">+×</span>
+        </h1>
+        <p class="hero-kana">ジェラテリア タストカケル</p>
+        <p class="hero-copy">味と香りの、たし算かけ算。</p>
+        <a class="btn" href="https://www.instagram.com/gelateriatasutokakeru/" target="_blank" rel="noopener">今日のフレーバーを見る</a>
+      </div>
+      <!-- 画面の下の「Scroll」と動く線 -->
+      <a class="scroll-hint" href="#concept" aria-label="下へスクロール">
+        <span>Scroll</span>
+        <i class="scroll-line"></i>
+      </a>
+    </section>
+
+    <!-- ===== 2. コンセプト ===== -->
+    <section class="section" id="concept">
+      <div class="container two-col">
+        <div>
+          <p class="en-label"><span class="num">01</span>Concept</p>
+          <h2>素材の味と香りを、<br>たして、かけて。</h2>
+          <p>店名の「＋×（タストカケル）」には、味と香りの“たし算”と“かけ算”という意味をこめました。</p>
+          <p>店主は、鳥取市内のホテルのレストランで8年間ソムリエとして働いてきました。ワインと料理を合わせるように、素材と素材を組み合わせて、ひとつの味をつくる。その経験を、ジェラートで表現しています。</p>
+          <p>季節の素材や、鳥取ならではの食材を使い、素材ごとに温度や練り方を変えて、その素材らしい風味を引き出します。</p>
+          <p>子どもから大人まで、食べることの楽しさを感じてほしい。そんな思いで、2022年にお店をはじめました。</p>
+          <p class="owner">店主　奥平 友美</p>
+        </div>
+        <img class="photo" src="images/concept.jpg" alt="季節の素材でつくるジェラート">
+      </div>
+    </section>
+
+    <!-- ===== 3. ジェラートも、ワインも ===== -->
+    <section class="pairing">
+      <div class="pairing-head">
+        <p class="en-label"><span class="num">02</span>Sweets &amp; Wine</p>
+        <h2>ジェラートも、ワインも。</h2>
+        <p>どちらも営業時間中（15:00〜22:00）いつでもお楽しみいただけます。</p>
+      </div>
+      <div class="pairing-cols">
+        <div class="pair sweets">
+          <!-- 写真（1600×1200）。何枚でも入れられて、2枚以上なら切り替わる -->
+          <div class="pair-slides">
+            <img class="is-active" src="images/sweets-1.jpg" alt="季節のフルーツのパフェ">
+            <img src="images/sweets-2.jpg" alt="ソースをかけたジェラート">
+            <img src="images/sweets-3.jpg" alt="ジェラートをのせたタルト">
+          </div>
+          <div class="pair-text">
+            <p class="en-label">Sweets</p>
+            <h3>季節を味わうスイーツ</h3>
+            <p>常時8種類のジェラートに、パフェやタルト。季節の素材を組み合わせた、ここでしか出会えない味を。</p>
+          </div>
+        </div>
+        <div class="pair wine">
+          <div class="pair-slides">
+            <img class="is-active" src="images/wine-1.jpg" alt="シャンパンとジェラート">
+            <img src="images/wine-2.jpg" alt="グラスに盛りつけたジェラート">
+            <img src="images/wine-3.jpg" alt="3本並んだ赤ワイン">
+          </div>
+          <div class="pair-text">
+            <p class="en-label">Wine</p>
+            <h3>ワインと、ジェラートを</h3>
+            <p>ソムリエが選ぶワインと、ワインに合う一品料理。ジェラートやパフェとワインのペアリングも楽しめます。リキュールを使った大人のジェラートも。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. 季節のフレーバー図鑑（中身は flavors.js から読み込む） ===== -->
+    <section class="section flavors" id="flavors">
+      <div class="container">
+        <p class="en-label"><span class="num">03</span>Flavors</p>
+        <h2>季節のフレーバー図鑑</h2>
+        <p class="lead">これまでにお店に並んだフレーバーの一部です。季節が変われば、並ぶ味も変わります。</p>
+        <div class="season-tabs" id="season-tabs" role="tablist" aria-label="季節"></div>
+        <div class="flavor-grid" id="flavor-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===== 5. Instagram へ案内する帯 ===== -->
+    <section class="ig-band">
+      <p class="en-label">Today's Flavors</p>
+      <h2>今日のフレーバーは Instagram で</h2>
+      <p>その日のフレーバーや新作、臨時休業のお知らせを毎日投稿しています。</p>
+      <a class="btn" href="https://www.instagram.com/gelateriatasutokakeru/" target="_blank" rel="noopener">@gelateriatasutokakeru</a>
+    </section>
+
+    <!-- ===== 6. テイクアウト ===== -->
+    <section class="section" id="takeout">
+      <div class="container two-col">
+        <img class="photo" src="images/takeout.jpg" alt="テイクアウトのジェラートセット">
+        <div>
+          <p class="en-label"><span class="num">04</span>Take out</p>
+          <h2>おうちでも、<br>ジェラートを。</h2>
+          <dl class="price-list">
+            <div><dt>ジェラート 5個セット</dt><dd>3,000円</dd></div>
+            <div><dt>ジェラート 10個セット</dt><dd>5,800円</dd></div>          </dl>
+          <p class="note">ご予約は、店頭または Instagram の DM からお気軽にどうぞ。</p>
+          <a class="btn btn-dark" href="https://ig.me/m/gelateriatasutokakeru" target="_blank" rel="noopener">Instagram で予約する</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. 店舗情報 ===== -->
+    <section class="section info" id="info">
+      <div class="container two-col">
+        <div>
+          <p class="en-label"><span class="num">05</span>Information</p>
+          <h2>店舗情報</h2>
+          <dl class="info-list">
+            <div><dt>店名</dt><dd>gelateria +×<small>ジェラテリア タストカケル</small></dd></div>
+            <div><dt>住所</dt><dd>鳥取県鳥取市今町2-201<small>JR鳥取駅から徒歩5分</small></dd></div>
+            <div><dt>営業時間</dt><dd>15:00〜22:00</dd></div>
+            <div><dt>定休日</dt><dd>月曜・火曜・水曜<small>臨時休業は Instagram でお知らせします</small></dd></div>
+            <div><dt>席数</dt><dd>イートイン 10席</dd></div>
+            <div><dt>電話</dt><dd><a href="tel:08063720336">080-6372-0336</a></dd></div>
+            <div><dt>お支払い</dt><dd>現金・クレジットカード・交通系IC・電子マネー</dd></div>
+            <div><dt>駐車場</dt><dd>専用駐車場はありません<small>お店の隣のコインパーキングをご利用ください</small></dd></div>
+          </dl>
+        </div>
+        <div class="map">
+          <figure class="shop-photo">
+            <img src="images/shop.jpg" alt="gelateria +× の外観">
+            <figcaption>グレーの外観と、木のベンチが目印です。</figcaption>
+          </figure>
+          <iframe src="https://www.google.com/maps?q=鳥取県鳥取市今町2-201&output=embed" loading="lazy" title="gelateria +× の地図"></iframe>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=鳥取県鳥取市今町2-201" target="_blank" rel="noopener">Google マップで開く</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== フッター（いちばん下） ===== -->
+  <footer class="footer">
+    <p class="footer-logo">gelateria <b>+×</b></p>
+    <p><a href="https://www.instagram.com/gelateriatasutokakeru/" target="_blank" rel="noopener">Instagram @gelateriatasutokakeru</a></p>
+    <p class="credit">Website by 杏</p>
+    <small>© gelateria +×</small>
+  </footer>
+
+  <!-- フレーバーのデータと、それを表示するしくみ -->
+  <script src="flavors.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

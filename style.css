@@ -1,0 +1,584 @@
+/* =========================================================
+   gelateria +× サイトの見た目
+   上から順に「全体の設定 → 各セクション」の順で書いています
+   ========================================================= */
+
+
+/* ---------- 色と書体（ここを変えるとサイト全体が変わる） ---------- */
+:root {
+  --charcoal: #2e3134;   /* お店の壁のグレー */
+  --charcoal-deep: #232629;
+  --wood: #8b5e3c;       /* カウンターの木目 */
+  --glow: #e3c392;       /* 電球のあたたかい光 */
+  --cream: #f5f1ea;      /* 背景の白 */
+  --paper: #fbf9f5;      /* 少し明るい背景 */
+  --sand: #ece5d9;       /* 昼のセクションの背景 */
+  --ink: #2a2a2a;        /* 文字の色 */
+  --muted: #736d66;      /* うすい文字 */
+  --line: #ddd4c7;       /* 区切り線 */
+
+  --serif-en: "Cormorant Garamond", Georgia, serif;
+  --serif-jp: "Shippori Mincho", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --mark: "Arial Black", "Helvetica Neue", Arial, sans-serif;  /* ロゴの「+×」用 */
+}
+
+
+/* ---------- 全体の基本設定 ---------- */
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;   /* メニューを押したとき、なめらかにスクロール */
+  scroll-padding-top: 64px;  /* 上のバーに見出しが隠れないように */
+}
+
+body {
+  margin: 0;
+  font-family: var(--serif-jp);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+
+/* 中身の横幅をそろえる箱 */
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section { padding: 96px 0; }
+
+/* 見出しの上の小さな英語 */
+.en-label {
+  margin: 0 0 4px;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  color: var(--wood);
+}
+
+/* 大きくて細い番号（01, 02 …） */
+.en-label .num {
+  display: block;
+  margin-bottom: 6px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: clamp(3.6rem, 9vw, 5.6rem);
+  font-variant-numeric: lining-nums;  /* 数字の高さをそろえる */
+  line-height: 1;
+  letter-spacing: 0;
+  color: rgba(139, 94, 60, 0.22);
+}
+
+h2 {
+  margin: 0 0 28px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+h3 { font-weight: 600; }
+
+.lead {
+  margin: 0 0 48px;
+  color: var(--muted);
+}
+
+.note {
+  margin: 16px 0 24px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* 丸いボタン */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.btn:hover { background: #fff; color: var(--charcoal); }
+
+/* 明るい背景の上で使う、濃い色のボタン */
+.btn-dark { color: var(--charcoal); }
+.btn-dark:hover { background: var(--charcoal); color: #fff; }
+
+/* 写真 */
+.photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* 2列のレイアウト（スマホでは1列、広い画面で2列） */
+.two-col {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 760px) {
+  .two-col { grid-template-columns: 1fr 1fr; gap: 72px; }
+}
+
+
+/* ---------- ヘッダー ---------- */
+/* トップの写真の上では透明。下にスクロールすると濃い色のバーになる */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 20px;
+  color: #fff;
+  background: transparent;
+  transition: background 0.5s ease;
+}
+.header.is-scrolled {
+  background: rgba(46, 49, 52, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+/* 小さいロゴは、トップの大きいロゴが見えている間は隠す */
+.header-logo {
+  font-family: var(--serif-en);
+  font-size: 1.3rem;
+  text-decoration: none;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.header.is-scrolled .header-logo { opacity: 1; pointer-events: auto; }
+.header-logo b,
+.footer-logo b { font-family: var(--mark); font-size: 0.9em; }
+
+.nav {
+  display: none;  /* スマホでは隠す */
+  gap: 28px;
+  font-size: 0.85rem;
+}
+.nav a { text-decoration: none; opacity: 0.85; }
+.nav a:hover { opacity: 1; }
+
+.header-ig {
+  padding: 4px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  font-family: var(--serif-en);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+@media (min-width: 860px) {
+  .nav { display: flex; margin-left: auto; }  /* 広い画面ではメニューを表示 */
+}
+
+
+/* ---------- 1. トップ ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  height: 100svh;  /* スマホのアドレスバーを除いた高さ */
+  min-height: 560px;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+  background: var(--charcoal);
+}
+
+/* 後ろの写真（重ねて置き、表示中の1枚だけ見せる） */
+.hero-slides { position: absolute; inset: 0; }
+.hero-slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  /* 消えるときはふわっと消え、見えなくなってから大きさを元に戻す */
+  transition: opacity 1.8s ease, transform 0s 1.8s;
+}
+.hero-slides img.is-active {
+  opacity: 1;
+  transform: scale(1);
+  /* 表示中はゆっくりズームアウト */
+  transition: opacity 1.8s ease, transform 7s linear;
+}
+/* ロゴとメニューが読みやすいように、写真の上に薄い黒を重ねる（上のほうは少し濃く） */
+.hero-slides::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(20, 22, 24, 0.35), transparent 22%),
+    rgba(28, 30, 32, 0.42);
+}
+
+/* 「動きを減らす」設定の人には、ズームしない */
+@media (prefers-reduced-motion: reduce) {
+  .hero-slides img,
+  .hero-slides img.is-active { transform: none; transition: opacity 1.8s ease; }
+}
+
+.hero-text { position: relative; padding: 0 20px; }
+
+.logo { margin: 0; font-weight: 400; line-height: 1; }
+.logo-word {
+  display: block;
+  font-family: var(--serif-en);
+  font-size: clamp(2.8rem, 10vw, 4.8rem);  /* 画面の幅に合わせて大きさが変わる */
+  letter-spacing: 0.05em;
+}
+.logo-mark {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--mark);
+  font-size: clamp(3rem, 12vw, 5.6rem);
+}
+
+.hero-kana {
+  margin: 22px 0 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  opacity: 0.9;
+}
+
+.hero-copy {
+  margin: 28px 0 40px;
+  font-size: 1.15rem;
+  letter-spacing: 0.2em;
+}
+
+/* 開いたときに、ロゴと文字が順番に浮かび上がる */
+.logo-word  { animation: tracking-in 2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both; }
+.logo-mark  { animation: fade-up 1.2s ease 1s both; }
+.hero-kana  { animation: fade-up 1.2s ease 1.3s both; }
+.hero-copy  { animation: fade-up 1.2s ease 1.5s both; }
+.hero-text .btn { animation: fade-up 1.2s ease 1.7s both; }
+
+@keyframes tracking-in {
+  from { opacity: 0; letter-spacing: 0.45em; filter: blur(4px); }
+  to   { opacity: 1; letter-spacing: 0.05em; filter: blur(0); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 画面の下の「Scroll」と、上から下へ流れる線 */
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  animation: fade-in 1.2s ease 2.2s both;
+}
+.scroll-line {
+  position: relative;
+  width: 1px;
+  height: 56px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.3);
+}
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  animation: scroll-line 2.4s ease-in-out infinite;
+}
+@keyframes scroll-line {
+  0%       { top: -100%; }
+  60%, 100% { top: 100%; }
+}
+/* 画面の高さが低いときは、文字とぶつからないように隠す */
+@media (max-height: 660px) {
+  .scroll-hint { display: none; }
+}
+
+
+/* ---------- 2. コンセプト ---------- */
+.owner {
+  margin-top: 28px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+
+/* ---------- 3. ジェラートも、ワインも ---------- */
+.pairing-head {
+  padding: 0 20px 56px;
+  text-align: center;
+}
+.pairing-head h2 { margin-bottom: 12px; }
+.pairing-head p:last-child { margin: 0; color: var(--muted); }
+
+.pairing-cols { display: grid; }
+@media (min-width: 760px) {
+  .pairing-cols { grid-template-columns: 1fr 1fr; }
+}
+
+.pair { padding-bottom: 64px; }
+/* 写真（重ねて置き、表示中の1枚だけ見せる） */
+.pair-slides {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.pair-slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+.pair-slides img.is-active { opacity: 1; }
+.pair-text {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 40px 24px 0;
+}
+.pair-text h3 { margin: 0 0 16px; font-size: 1.25rem; }
+
+.sweets { background: var(--sand); }
+.wine { background: var(--charcoal); color: #ecebe8; }
+.wine .en-label { color: var(--glow); }
+
+
+/* 値段の一覧（左に名前、右に値段） */
+.price-list { margin: 0; }
+.price-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--line);
+}
+.price-list dd { margin: 0; white-space: nowrap; }
+.price-list small,
+.info-list small,
+.flavor small {
+  display: block;
+  font-size: 0.76rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+
+/* ---------- 4. 季節のフレーバー図鑑 ---------- */
+.flavors { background: var(--paper); }
+
+/* 季節を切り替えるボタン */
+.season-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.season-tabs button {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+.season-tabs button span {
+  font-family: var(--serif-en);
+  font-style: italic;
+  font-size: 0.9em;
+  color: var(--wood);
+}
+.season-tabs button[aria-selected="true"] {
+  color: #fff;
+  background: var(--charcoal);
+  border-color: var(--charcoal);
+}
+.season-tabs button[aria-selected="true"] span { color: var(--glow); }
+
+/* フレーバーのカード（スマホで2列、広い画面で4列） */
+.flavor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 16px;
+}
+@media (min-width: 760px) {
+  .flavor-grid { grid-template-columns: repeat(4, 1fr); gap: 40px 24px; }
+}
+
+.flavor { margin: 0; }
+.flavor-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--season-color);
+}
+.flavor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 写真がないときは「+×」を薄く表示 */
+.flavor-photo:empty::after {
+  content: "+×";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--mark);
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.flavor figcaption { padding-top: 10px; }
+.flavor-name { display: block; font-size: 0.95rem; }
+
+/* 季節ごとの色（写真がないときの四角の色） */
+.spring  { --season-color: #e3c4c1; }
+.summer  { --season-color: #bcd3ce; }
+.autumn  { --season-color: #dcc0a1; }
+.winter  { --season-color: #c6ccd8; }
+.classic { --season-color: #cfc8bd; }
+
+
+/* ---------- 5. Instagram の帯 ---------- */
+.ig-band {
+  padding: 88px 20px;
+  text-align: center;
+  color: #fff;
+  background: var(--charcoal);
+}
+.ig-band .en-label { color: var(--glow); }
+.ig-band h2 { margin-bottom: 12px; }
+.ig-band p { margin: 0 0 32px; opacity: 0.85; }
+
+
+/* ---------- 7. 店舗情報 ---------- */
+.info .two-col { align-items: start; }
+
+.info-list { margin: 0; }
+.info-list div {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.info-list dt { font-size: 0.85rem; color: var(--muted); }
+.info-list dd { margin: 0; }
+
+.shop-photo { margin: 0 0 24px; }
+.shop-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.shop-photo figcaption {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.map iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  filter: grayscale(0.6);  /* 地図の色を落ち着かせる */
+}
+.map-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.85rem;
+}
+
+
+/* ---------- フッター ---------- */
+.footer {
+  padding: 64px 20px 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #c9c6c1;
+  background: var(--charcoal-deep);
+}
+.footer-logo {
+  margin: 0 0 16px;
+  font-family: var(--serif-en);
+  font-size: 1.7rem;
+  color: #fff;
+}
+.footer a { text-decoration: none; }
+.credit { opacity: 0.7; }
+
+
+/* ---------- スクロールすると、ふわっと浮かび上がる ---------- */
+/* main.js が対象に .reveal を付け、画面に入ったら .is-visible を付ける */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 1.1s ease, transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.btn.reveal {
+  transition: opacity 1.1s ease, transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.3s, color 0.3s;
+}
+
+/* フレーバーのカードは、季節を切り替えるたびに順番に現れる */
+.flavor {
+  animation: fade-up 0.8s ease both;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+
+/* ---------- 「動きを減らす」設定の人には、動きを止める ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .logo-word, .logo-mark, .hero-kana, .hero-copy, .hero-text .btn,
+  .scroll-hint, .scroll-line::after, .flavor {
+    animation: none;
+  }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

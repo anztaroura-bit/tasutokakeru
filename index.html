@@ -26,7 +26,7 @@
     <a href="#top" class="header-logo">gelateria <b>+×</b></a>
     <nav class="nav">
       <a href="#concept">コンセプト</a>
-      <a href="#flavors">フレーバー</a>
+      <a href="#parfait">パフェ</a>
       <a href="#takeout">テイクアウト</a>
       <a href="#info">店舗情報</a>
     </nav>
@@ -47,7 +47,8 @@
         </picture>
         <picture>
           <source media="(orientation: portrait)" srcset="images/hero-2-sp.jpg">
-          <img src="images/hero-2.jpg" alt="ショーケースに並ぶジェラート">
+          <!-- fit-sp：スマホでは写真を全部見せる（上下に背景と同じ色の余白） -->
+          <img class="fit-sp" src="images/hero-2.jpg" alt="ショーケースに並ぶジェラート">
         </picture>
         <picture>
           <source media="(orientation: portrait)" srcset="images/hero-3-sp.jpg">
@@ -80,26 +81,26 @@
           <p>店主は、鳥取市内のホテルのレストランで8年間ソムリエとして働いてきました。ワインと料理を合わせるように、素材と素材を組み合わせて、ひとつの味をつくる。その経験を、ジェラートで表現しています。</p>
           <p>季節の素材や、鳥取ならではの食材を使い、素材ごとに温度や練り方を変えて、その素材らしい風味を引き出します。</p>
           <p>子どもから大人まで、食べることの楽しさを感じてほしい。そんな思いで、2022年にお店をはじめました。</p>
-          <p class="owner">店主　奥平 友美</p>
         </div>
         <img class="photo" src="images/concept.jpg" alt="季節の素材でつくるジェラート">
       </div>
     </section>
 
-    <!-- ===== 3. ジェラートも、ワインも ===== -->
+    <!-- ===== 3. ジェラートも、ワインも（スイーツとワインを横に2つ並べる） ===== -->
     <section class="pairing">
       <div class="pairing-head">
         <p class="en-label"><span class="num">02</span>Sweets &amp; Wine</p>
         <h2>ジェラートも、ワインも。</h2>
         <p>どちらも営業時間中（15:00〜22:00）いつでもお楽しみいただけます。</p>
       </div>
-      <div class="pairing-cols">
-        <div class="pair sweets">
-          <!-- 写真（1600×1200）。何枚でも入れられて、2枚以上なら切り替わる -->
+
+      <div class="pair-row">
+        <div class="pair">
+          <!-- 写真（正方形 1200×1200）。何枚でも入れられて、2枚以上なら切り替わる -->
           <div class="pair-slides">
-            <img class="is-active" src="images/sweets-1.jpg" alt="季節のフルーツのパフェ">
-            <img src="images/sweets-2.jpg" alt="ソースをかけたジェラート">
-            <img src="images/sweets-3.jpg" alt="ジェラートをのせたタルト">
+            <img class="is-active" src="images/sweets-1.jpg" alt="いちごのソースをかけた3段のジェラート">
+            <img src="images/sweets-2.jpg" alt="赤と白の2段のジェラート">
+            <img src="images/sweets-3.jpg" alt="3段に重ねたジェラートのコーン">
           </div>
           <div class="pair-text">
             <p class="en-label">Sweets</p>
@@ -107,29 +108,53 @@
             <p>常時8種類のジェラートに、パフェやタルト。季節の素材を組み合わせた、ここでしか出会えない味を。</p>
           </div>
         </div>
-        <div class="pair wine">
+        <div class="pair">
           <div class="pair-slides">
             <img class="is-active" src="images/wine-1.jpg" alt="シャンパンとジェラート">
-            <img src="images/wine-2.jpg" alt="グラスに盛りつけたジェラート">
-            <img src="images/wine-3.jpg" alt="3本並んだ赤ワイン">
+            <img src="images/wine-2.jpg" alt="赤ワインとジェラート">
+            <img src="images/wine-3.jpg" alt="グラスに盛りつけたジェラート">
           </div>
           <div class="pair-text">
             <p class="en-label">Wine</p>
             <h3>ワインと、ジェラートを</h3>
-            <p>ソムリエが選ぶワインと、ワインに合う一品料理。ジェラートやパフェとワインのペアリングも楽しめます。リキュールを使った大人のジェラートも。</p>
+            <p>ソムリエが選ぶワインと、ジェラートやパフェのペアリングを楽しめます。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== 4. 季節のフレーバー図鑑（中身は flavors.js から読み込む） ===== -->
-    <section class="section flavors" id="flavors">
+    <!-- ===== 4. パフェとタルト ===== -->
+    <section class="section parfait" id="parfait">
       <div class="container">
-        <p class="en-label"><span class="num">03</span>Flavors</p>
-        <h2>季節のフレーバー図鑑</h2>
-        <p class="lead">これまでにお店に並んだフレーバーの一部です。季節が変われば、並ぶ味も変わります。</p>
-        <div class="season-tabs" id="season-tabs" role="tablist" aria-label="季節"></div>
-        <div class="flavor-grid" id="flavor-grid"></div>
+        <p class="en-label"><span class="num">03</span>Parfait &amp; Tart</p>
+        <h2>ジェラートでつくる、<br>パフェやタルト。</h2>
+        <p class="lead">自家製のジェラートを主役に、季節のフルーツや焼き菓子を重ねて。ひとつの器の中で、味と香りのたし算かけ算を楽しめます。</p>
+
+        <!-- 写真（1200×1500 の縦長）。スマホでは横にスワイプして見る -->
+        <div class="parfait-grid">
+          <figure class="parfait-card">
+            <img src="images/tart-1.jpg" alt="ジェラートとレモンをのせたタルト">
+            <figcaption>
+              <span class="parfait-name">ジェラートのタルト</span>
+              <small>さくっとした生地に、ジェラートと季節の素材をのせて。</small>
+            </figcaption>
+          </figure>
+          <figure class="parfait-card">
+            <img src="images/parfait-1.jpg" alt="いちじくとぶどうの季節のパフェ">
+            <figcaption>
+              <span class="parfait-name">季節のパフェ</span>
+              <small>旬の素材とジェラートを、グラスいっぱいに重ねて。</small>
+            </figcaption>
+          </figure>
+          <figure class="parfait-card">
+            <img src="images/parfait-2.jpg" alt="オレンジとチョコレートのパフェ">
+            <figcaption>
+              <span class="parfait-name">ワインと楽しむパフェ</span>
+              <small>ワイングラスで仕立てる、大人のためのパフェ。</small>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="note">内容は季節によって変わります。最新のパフェとタルトは Instagram でお知らせしています。</p>
       </div>
     </section>
 
@@ -148,10 +173,8 @@
         <div>
           <p class="en-label"><span class="num">04</span>Take out</p>
           <h2>おうちでも、<br>ジェラートを。</h2>
-          <dl class="price-list">
-            <div><dt>ジェラート 5個セット</dt><dd>3,000円</dd></div>
-            <div><dt>ジェラート 10個セット</dt><dd>5,800円</dd></div>          </dl>
-          <p class="note">ご予約は、店頭または Instagram の DM からお気軽にどうぞ。</p>
+          <p>お好きなフレーバーを選んで、5個・10個のセットでお持ち帰りいただけます。</p>
+          <p class="note">※価格は選ぶフレーバーによって変わります。<br>ご予約は、店頭または Instagram の DM からお気軽にどうぞ。</p>
           <a class="btn btn-dark" href="https://ig.me/m/gelateriatasutokakeru" target="_blank" rel="noopener">Instagram で予約する</a>
         </div>
       </div>
@@ -195,8 +218,7 @@
     <small>© gelateria +×</small>
   </footer>
 
-  <!-- フレーバーのデータと、それを表示するしくみ -->
-  <script src="flavors.js"></script>
+  <!-- 写真の切り替えや、スクロールの動きのしくみ -->
   <script src="main.js"></script>
 </body>
 </html>

@@ -28,87 +28,6 @@ document.querySelectorAll(".pair-slides").forEach((el) => startSlideshow(el, 500
 
 
 /* =========================================================
-   季節のフレーバー図鑑を表示するしくみ
-   flavors.js のデータから、季節のボタンとフレーバーのカードを作る
-   ========================================================= */
-
-const SEASONS = [
-  { key: "spring",  label: "春",   en: "Spring" },
-  { key: "summer",  label: "夏",   en: "Summer" },
-  { key: "autumn",  label: "秋",   en: "Autumn" },
-  { key: "winter",  label: "冬",   en: "Winter" },
-  { key: "classic", label: "定番", en: "Classic" },
-];
-
-const tabs = document.getElementById("season-tabs");
-const grid = document.getElementById("flavor-grid");
-
-// 今日の月から、今の季節を決める（最初に開く季節）
-function currentSeason() {
-  const month = new Date().getMonth() + 1;
-  if (month >= 3 && month <= 5) return "spring";
-  if (month >= 6 && month <= 8) return "summer";
-  if (month >= 9 && month <= 11) return "autumn";
-  return "winter";
-}
-
-// フレーバー1つ分のカードを作る（index は順番に現れるための番号）
-function makeCard(flavor, index) {
-  const card = document.createElement("figure");
-  card.className = "flavor " + flavor.season;
-  card.style.setProperty("--i", index);
-
-  const photo = document.createElement("div");
-  photo.className = "flavor-photo";
-  if (flavor.photo) {
-    const img = document.createElement("img");
-    img.src = "images/flavors/" + flavor.photo;
-    img.alt = flavor.name;
-    img.loading = "lazy";
-    img.onerror = () => img.remove();  // 写真がまだなければ、季節の色の四角を見せる
-    photo.appendChild(img);
-  }
-
-  const caption = document.createElement("figcaption");
-  const name = document.createElement("span");
-  name.className = "flavor-name";
-  name.textContent = flavor.name;
-  caption.appendChild(name);
-  if (flavor.note) {
-    const note = document.createElement("small");
-    note.textContent = flavor.note;
-    caption.appendChild(note);
-  }
-
-  card.append(photo, caption);
-  return card;
-}
-
-// 選んだ季節のフレーバーだけを並べる
-function showSeason(key) {
-  tabs.querySelectorAll("button").forEach((button) => {
-    button.setAttribute("aria-selected", button.dataset.season === key);
-  });
-  grid.replaceChildren(...FLAVORS.filter((f) => f.season === key).map(makeCard));
-}
-
-// 季節のボタンを作る（フレーバーが1つもない季節は出さない）
-const usedSeasons = SEASONS.filter((s) => FLAVORS.some((f) => f.season === s.key));
-usedSeasons.forEach((season) => {
-  const button = document.createElement("button");
-  button.type = "button";
-  button.setAttribute("role", "tab");
-  button.dataset.season = season.key;
-  button.innerHTML = `${season.label}<span>${season.en}</span>`;
-  button.addEventListener("click", () => showSeason(season.key));
-  tabs.appendChild(button);
-});
-
-const first = usedSeasons.some((s) => s.key === currentSeason()) ? currentSeason() : usedSeasons[0].key;
-showSeason(first);
-
-
-/* =========================================================
    上のバー：トップの写真を通り過ぎたら濃い色にする
    ========================================================= */
 
@@ -133,7 +52,8 @@ const REVEAL_TARGETS = [
   ".two-col > *",
   ".pairing-head",
   ".pair",
-  ".flavors .container > *",
+  ".parfait .container > :not(.parfait-grid)",
+  ".parfait-card",
   ".ig-band > *",
 ];
 

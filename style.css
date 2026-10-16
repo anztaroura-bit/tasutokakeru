@@ -361,7 +361,9 @@ h3 { font-weight: 600; }
 @media (min-width: 760px) {
   .pair-row { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
-.pair-text { padding-top: 24px; }
+/* 文章が上、写真が下。文章の部分が伸びて、左右の写真の高さがそろう */
+.pair { display: flex; flex-direction: column; }
+.pair-text { flex: 1; padding-bottom: 24px; }
 .pair-text h3 { margin: 0 0 12px; font-size: 1.25rem; }
 
 /* 写真（重ねて置き、表示中の1枚だけ見せる） */
@@ -399,6 +401,13 @@ h3 { font-weight: 600; }
   font-size: 0.76rem;
   line-height: 1.6;
   color: var(--muted);
+}
+
+
+/* ---------- テイクアウト：スマホでは文章が上、写真が下（パソコンは横並びのまま） ---------- */
+#takeout .photo { order: 2; }
+@media (min-width: 760px) {
+  #takeout .photo { order: 0; }
 }
 
 
